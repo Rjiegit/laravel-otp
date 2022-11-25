@@ -29,5 +29,8 @@
       "name": "Jie",
       "email": "mjunzh@gmail.com"
     }
-  ]
+  ],
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
 }
