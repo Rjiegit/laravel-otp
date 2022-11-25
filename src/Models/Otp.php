@@ -2,7 +2,6 @@
 
 namespace Hellojie\LaravelOtp\Models;
 
-use Hellojie\LaravelOtp\Database\Factories\OtpFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
