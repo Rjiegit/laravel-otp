@@ -8,7 +8,7 @@ use Hellojie\LaravelOtp\OtpService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
-class OtpTest extends TestCase
+class OtpServiceTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -73,6 +73,34 @@ class OtpTest extends TestCase
         $result = $otpService->validate(key: $otp->key, token: $otp->token);
 
         $this->assertTrue($result);
+    }
+
+    public function testShouldMarkUsedAtIfOtpValidated()
+    {
+        $otp = Otp::factory()->create();
+
+        $otpService = $this->createOtpService();
+
+        $result = $otpService->validate(key: $otp->key, token: $otp->token);
+
+        $this->assertTrue($result);
+        $this->assertDatabaseMissing((new Otp())->getTable(), [
+                'key' => $otp->key,
+                'token' => $otp->token,
+                'used_at' => null
+        ]);
+    }
+
+    public function testShouldReturnFalseIfOtpValidatedAgain()
+    {
+        $otp = Otp::factory()->create();
+
+        $otpService = $this->createOtpService();
+
+        $otpService->validate(key: $otp->key, token: $otp->token);
+        $result = $otpService->validate(key: $otp->key, token: $otp->token);
+
+        $this->assertFalse($result);
     }
 
     public function createOtpService(): OtpService

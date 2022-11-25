@@ -25,11 +25,13 @@ class Otp extends Model
     protected $fillable = [
             'key',
             'token',
+            'used_at',
             'expired_at',
     ];
 
     protected $casts = [
-            'expired_at' => 'datetime'
+            'expired_at' => 'datetime',
+            'used_at' => 'datetime',
     ];
 
 }

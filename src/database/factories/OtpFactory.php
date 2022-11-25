@@ -18,9 +18,10 @@ class OtpFactory extends Factory
     public function definition()
     {
         return [
-            'key' => $this->faker->unique()->title,
-            'token' => $this->faker->title,
-            'expired_at' => now()->addMinute()
+                'key' => $this->faker->unique()->title,
+                'token' => $this->faker->title,
+                'used_at' => null,
+                'expired_at' => now()->addMinute()
         ];
     }
 }

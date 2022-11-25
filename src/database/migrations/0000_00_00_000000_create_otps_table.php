@@ -17,6 +17,7 @@ class CreateOtpsTable extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->string('token');
+            $table->timestamp('used_at')->nullable();
             $table->timestamp('expired_at');
             $table->timestamps();
         });
