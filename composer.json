@@ -16,6 +16,9 @@
       "Hellojie\\LaravelOtp\\": "src/"
     }
   },
+  "classmap": [
+    "database/factories"
+  ],
   "autoload-dev": {
     "psr-4": {
       "Tests\\": "tests/"
