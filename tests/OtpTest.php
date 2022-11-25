@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Hellojie\LaravelOtp\Models\Otp;
 use Hellojie\LaravelOtp\OtpService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -10,25 +11,46 @@ class OtpTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_should_generate_otp()
+    public function testShouldGenerateOtp()
     {
-
-        $otpService = new OtpService();
+        $key = 'thiskey';
         $length = 5;
-        $result = $otpService->generate(length: $length);
+
+        $otpService = $this->createOtpService();
+
+        $result = $otpService->generate(key: $key, length: $length);
 
         $this->assertIsString($result);
         $this->assertEquals($length, strlen($result));
+
+        $this->assertDatabaseHas((new Otp())->getTable(), [
+                'key' => $key,
+                'token' => $result,
+        ]);
     }
 
-    public function test_should_validate_the_otp()
+    public function testShouldValidateTheOtp()
     {
+        $otp = Otp::factory()->create();
 
-
-        $otpService = new OtpService();
-        $result = $otpService->validate(key: 'key', token: 'token');
+        $otpService = $this->createOtpService();
+        $result = $otpService->validate(key: $otp->key, token: $otp->token);
 
         $this->assertTrue($result);
+    }
+
+    public function testShouldReturnFalseIfOtpNotExists()
+    {
+        $otpService = $this->createOtpService();
+
+        $result = $otpService->validate(key: 'xxx', token: 'xxx');
+
+        $this->assertFalse($result);
+    }
+
+    public function createOtpService(): OtpService
+    {
+        return app(OtpService::class);
     }
 
 }
