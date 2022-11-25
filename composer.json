@@ -1,6 +1,12 @@
 {
   "name": "hellojie/laravel-otp",
   "type": "library",
+  "keywords": [
+    "laravel",
+    "otp",
+    "one time passwords"
+  ],
+  "description": "A simple OTP package",
   "require": {
     "php": "^8.1",
     "illuminate/database": "^9.41",
@@ -16,9 +22,6 @@
       "Hellojie\\LaravelOtp\\": "src/"
     }
   },
-  "classmap": [
-    "database/factories"
-  ],
   "autoload-dev": {
     "psr-4": {
       "Tests\\": "tests/"
@@ -32,5 +35,6 @@
   ],
   "scripts": {
     "test": "vendor/bin/phpunit"
-  }
+  },
+  "license": "MIT"
 }
