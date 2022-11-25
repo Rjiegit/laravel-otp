@@ -24,7 +24,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Hellojie\\LaravelOtp\\Tests\\": "tests/",
+      "Hellojie\\LaravelOtp\\Database\\Factories\\": "src/database/factories/"
     }
   },
   "authors": [

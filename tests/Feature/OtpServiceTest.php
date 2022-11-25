@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Hellojie\LaravelOtp\Tests\Feature;
 
-use Tests\TestCase;
+use Hellojie\LaravelOtp\Tests\TestCase;
 use Hellojie\LaravelOtp\Models\Otp;
 use Hellojie\LaravelOtp\OtpService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
