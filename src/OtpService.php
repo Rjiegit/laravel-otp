@@ -11,7 +11,7 @@ class OtpService
     {
     }
 
-    public function generate(string $key, int $length = 5): string
+    public function generate(string $key, int $length = 5, int $timeSeconds = 60): string
     {
         $token = str_pad(
                 (string)rand(0, pow(10, $length) - 1),
@@ -23,6 +23,7 @@ class OtpService
         Otp::create([
                 'key' => $key,
                 'token' => $token,
+                'expired_at' => now()->addSeconds($timeSeconds)
         ]);
 
         return $token;
@@ -32,10 +33,20 @@ class OtpService
             string $key,
             string $token
     ): bool {
-        return Otp::query()
+        $otp = Otp::query()
                 ->where('key', $key)
                 ->where('token', $token)
-                ->exists();
+                ->first();
+
+        if ($otp === null) {
+            return false;
+        }
+
+        if (now()->isAfter($otp->expired_at)) {
+            return false;
+        }
+
+        return true;
     }
 
 }

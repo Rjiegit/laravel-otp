@@ -19,7 +19,8 @@ class OtpFactory extends Factory
     {
         return [
             'key' => $this->faker->unique()->title,
-            'token' => $this->faker->title
+            'token' => $this->faker->title,
+            'expired_at' => now()->addMinute()
         ];
     }
 }

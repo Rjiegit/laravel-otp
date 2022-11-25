@@ -9,6 +9,7 @@ class Otp extends Model
 {
 
     use HasFactory;
+
     /**
      * The database table used by the model.
      *
@@ -24,6 +25,11 @@ class Otp extends Model
     protected $fillable = [
             'key',
             'token',
+            'expired_at',
+    ];
+
+    protected $casts = [
+            'expired_at' => 'datetime'
     ];
 
 }

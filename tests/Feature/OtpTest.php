@@ -49,6 +49,32 @@ class OtpTest extends TestCase
         $this->assertFalse($result);
     }
 
+    public function testShouldReturnFalseIfOtpIsExpired()
+    {
+        $otp = Otp::factory()->create([
+                'expired_at' => now()->subSecond()
+        ]);
+
+        $otpService = $this->createOtpService();
+
+        $result = $otpService->validate(key: $otp->key, token: $otp->token);
+
+        $this->assertFalse($result);
+    }
+
+    public function testShouldReturnTrueIfOtpIsValid()
+    {
+        $otp = Otp::factory()->create([
+                'expired_at' => now()->addMinute()
+        ]);
+
+        $otpService = $this->createOtpService();
+
+        $result = $otpService->validate(key: $otp->key, token: $otp->token);
+
+        $this->assertTrue($result);
+    }
+
     public function createOtpService(): OtpService
     {
         return app(OtpService::class);
