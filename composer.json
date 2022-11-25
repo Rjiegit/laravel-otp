@@ -1,0 +1,30 @@
+{
+  "name": "hellojie/laravel-otp",
+  "type": "library",
+  "require": {
+    "php": "^8.1",
+    "illuminate/database": "^9.41",
+    "illuminate/support": "^9.41",
+    "nesbot/carbon": "^2.63"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "orchestra/testbench": "^7.14"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hellojie\\LaravelOtp\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Jie",
+      "email": "mjunzh@gmail.com"
+    }
+  ]
+}
