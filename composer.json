@@ -19,13 +19,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Hellojie\\LaravelOtp\\": "src/"
+      "Hellojie\\LaravelOtp\\": "src/",
+      "Hellojie\\LaravelOtp\\Database\\Factories\\": "src/database/factories/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Hellojie\\LaravelOtp\\Tests\\": "tests/",
-      "Hellojie\\LaravelOtp\\Database\\Factories\\": "src/database/factories/"
+      "Hellojie\\LaravelOtp\\Tests\\": "tests/"
     }
   },
   "authors": [
@@ -37,5 +37,12 @@
   "scripts": {
     "test": "vendor/bin/phpunit"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hellojie\\LaravelOtp\\LaravelOtpServiceProvider"
+      ]
+    }
+  }
 }
