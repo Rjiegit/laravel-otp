@@ -10,6 +10,11 @@ A simple OTP package for laravel 9.
 composer require hellojie/laravel-otp:dev-main
 ```
 
+## Publish the migrations
+```php
+php artisan vendor:publish
+```
+
 ## Usage
 
 ### Generate OTP
